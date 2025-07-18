@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CupomController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -14,3 +15,10 @@ Route::get("produto/ver/{produto}", [ProdutoController::class, "getVer"])->name(
 Route::get("produto/editar/{produto}", [ProdutoController::class, "getUpdate"])->name("produtos.editar");
 Route::put("produto/editar/{produto}", [ProdutoController::class, "putUpdate"])->name("produtos.editar");
 Route::delete("produto/excluir/{produto}", [ProdutoController::class, "deleteProduto"])->name("produtos.excluir");
+
+Route::get("cupons", [CupomController::class, "index"])->name("cupons.index");
+Route::get("cupom/criar", [CupomController::class, "getCreate"])->name("cupons.criar");
+Route::post("cupom/criar", [CupomController::class, "postCreate"])->name("cupons.criar");
+Route::get("cupom/editar/{cupom}", [CupomController::class, "getUpdate"])->name("cupons.editar");
+Route::put("cupom/editar/{cupom}", [CupomController::class, "putUpdate"])->name("cupons.editar");
+Route::delete("cupom/excluir/{cupom}", [CupomController::class, "deleteCupom"])->name("cupons.excluir");

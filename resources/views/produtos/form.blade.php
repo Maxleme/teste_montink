@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3 col">
                 <label class="form-label">Preço Base (R$):</label>
-                <input class="form-control" type="number" step="0.01" name="preco" value="{{ old('nome', $produto->preco ?? '') }}" required>
+                <input class="form-control" type="number" step="0.01" name="preco" value="{{ old('preco', $produto->preco ?? '') }}" required>
             </div>
             <div class="mb-3 col">
                 <label class="form-label">Estoque:*</label>                
@@ -58,30 +58,29 @@
         </div>
     </form>
 </div>
-    <script>
-        let variacaoCount = {{ isset($produto) && $produto->variacoes->isNotEmpty() ? 
-                          $produto->variacoes->max('id') + 1 : 1 }};
-        function addVariacao() {
-            const container = document.getElementById('variacoes-container');
-            const newVariacao = document.createElement('div');
-            newVariacao.className = 'variacao row g-3 mb-4';
-            newVariacao.innerHTML = `
-                <div class="col">
-                    <input class="form-control" type="text" name="variacoes[${variacaoCount}][nome]" placeholder="Tamanho/Cor" required>
-                </div>
-                <div class="col">
-                    <input class="form-control" type="number" step="0.01" name="variacoes[${variacaoCount}][preco]" placeholder="Preço adicional">
-                </div>
-                <div class="col">
-                    <input class="form-control" type="number" name="variacoes[${variacaoCount}][estoque]" placeholder="Estoque" required>
-                </div>
-                <div class="col">
-                    <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">X</button>
-                </div>
-            `;
-            container.appendChild(newVariacao);
-            variacaoCount++;
-        }
-    </script>
-</div>
+<script>
+    let variacaoCount = {{ isset($produto) && $produto->variacoes->isNotEmpty() ? 
+                        $produto->variacoes->max('id') + 1 : 1 }};
+    function addVariacao() {
+        const container = document.getElementById('variacoes-container');
+        const newVariacao = document.createElement('div');
+        newVariacao.className = 'variacao row g-3 mb-4';
+        newVariacao.innerHTML = `
+            <div class="col">
+                <input class="form-control" type="text" name="variacoes[${variacaoCount}][nome]" placeholder="Tamanho/Cor" required>
+            </div>
+            <div class="col">
+                <input class="form-control" type="number" step="0.01" name="variacoes[${variacaoCount}][preco]" placeholder="Preço adicional">
+            </div>
+            <div class="col">
+                <input class="form-control" type="number" name="variacoes[${variacaoCount}][estoque]" placeholder="Estoque" required>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">X</button>
+            </div>
+        `;
+        container.appendChild(newVariacao);
+        variacaoCount++;
+    }
+</script>
 @endsection

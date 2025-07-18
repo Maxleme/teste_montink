@@ -23,7 +23,7 @@ class ProdutoController extends Controller
 
     public function getCreate()
     {
-        return view("produtos.create");
+        return view("produtos.form");
     }
 
     public function postCreate(ProdutoRequest $request)
@@ -37,7 +37,7 @@ class ProdutoController extends Controller
     public function getUpdate(Produto $produto)
     {
         $produto->load('variacoes');
-        return view("produtos.create", compact("produto"));
+        return view("produtos.form", compact("produto"));
     }
 
     public function putUpdate(ProdutoRequest $request, Produto $produto)

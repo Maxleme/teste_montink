@@ -6,13 +6,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link link-light active" href="/">Produtos</a>
+          <a class="nav-link link-light active" href="{{ url('/') }}">Produtos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-light" href="pedidos">Pedidos</a>
+          <a class="nav-link link-light" href="{{ url('/pedidos') }}">Pedidos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-light" href="#">Cupons</a>
+          <a class="nav-link link-light" href="{{ url('/cupons') }}">Cupons</a>
         </li>
       </ul>
     </div>

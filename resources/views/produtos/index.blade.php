@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($produtos as $produto)
                 <tr>
-                    <td>{{$produto->nome}}</td>
+                    <td><a href={{ url('/produto/ver/' . $produto->id) }}>{{$produto->nome}}</a></td>
                     <td class="text-end">R$ {{ $produto->preco }}</td>
                     <td class="text-end">{{ $produto->estoque }}</td>
                     <td class="text-center">

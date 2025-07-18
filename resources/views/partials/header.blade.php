@@ -14,7 +14,17 @@
         <li class="nav-item">
           <a class="nav-link link-light" href="{{ url('/cupons') }}">Cupons</a>
         </li>
-      </ul>
+        <li class="nav-item">
+            <a href="{{ route('carrinho.ver') }}" class="btn btn-secondary position-relative">
+              <i class="bi bi-cart"></i>
+              @if(count(session()->get('carrinho', [])) > 0)
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{ array_sum(array_column(session()->get('carrinho', []), 'quantidade')) }}
+                  </span>
+              @endif
+            </a>
+        </li>
+      </ul>      
     </div>
   </div>
 </nav>

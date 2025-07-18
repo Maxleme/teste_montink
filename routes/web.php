@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CupomController;
+use App\Http\Controllers\CarrinhoController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -22,3 +23,7 @@ Route::post("cupom/criar", [CupomController::class, "postCreate"])->name("cupons
 Route::get("cupom/editar/{cupom}", [CupomController::class, "getUpdate"])->name("cupons.editar");
 Route::put("cupom/editar/{cupom}", [CupomController::class, "putUpdate"])->name("cupons.editar");
 Route::delete("cupom/excluir/{cupom}", [CupomController::class, "deleteCupom"])->name("cupons.excluir");
+
+Route::post('/carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
+Route::get('/carrinho', [CarrinhoController::class, 'ver'])->name('carrinho.ver');
+Route::post('/carrinho/remover/{id}', [CarrinhoController::class, 'remover'])->name('carrinho.remover');

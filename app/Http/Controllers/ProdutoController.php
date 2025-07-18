@@ -33,4 +33,30 @@ class ProdutoController extends Controller
         return redirect()->route('produtos.index')->with('success','Produto criado');
 
     }
+
+    public function getUpdate(Produto $produto)
+    {
+        $produto->load('variacoes');
+        return view("produtos.create", compact("produto"));
+    }
+
+    public function putUpdate(ProdutoRequest $request, Produto $produto)
+    {
+        $produto = $this->produtoRepository->atualizarProdutoComVariacoes($produto, $request->validated());
+        return redirect()->route('produtos.index')->with('success','Produto editado');
+    }
+
+    public function getVer(Produto $produto)
+    {   
+        $produto->load('variacoes');
+        return view("produtos.ver", compact('produto'));
+    }
+
+    public function deleteProduto(Produto $produto)
+    {
+        $this->produtoRepository->excluirProdutoComVariacoes($produto);
+        
+        return redirect()->route('produtos.index')
+            ->with('success', 'Produto e variações excluídos com sucesso');
+    }
 }

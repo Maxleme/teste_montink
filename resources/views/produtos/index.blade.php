@@ -25,12 +25,16 @@
                     <td class="text-end">{{ $produto->estoque }}</td>
                     <td class="text-center">
                         <div class="btn-group" role="group">
-                            <button class="btn btn-sm btn-outline-primary">
+                            <a href="{{ route('produtos.editar', [$produto->id]) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i> Editar
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i> Excluir
-                            </button>
+                            </a>
+                            <form action="{{ route('produtos.excluir', $produto->id) }}" method="post" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirmarExclusao(event)">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -39,6 +43,15 @@
         </table>
     </div>
 </div>
+<script>
+function confirmarExclusao(event) {
+    if (!confirm('Tem certeza que deseja excluir este produto e todas suas variações?')) {
+        event.preventDefault(); // Cancela a navegação
+        return false;
+    }
+    return true;
+}
+</script>
 @endsection
 
 
